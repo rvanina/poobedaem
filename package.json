@@ -1,0 +1,13 @@
+{
+  "name": "poobedaem",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rvanina/poobedaem.git",
+  "author": "Rvanina team",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4",
+    "knex": "^0.15.2"
+  }
+}
