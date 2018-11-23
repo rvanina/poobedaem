@@ -1,26 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Helmet } from 'react-helmet';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import { colors } from './theme';
+import Header from './Header';
+
+const ContentWrapper = styled.section`
+  background: ${colors.bg};
+`;
+
+const LobbyList = () => (
+  <ContentWrapper>
+    <Helmet>Пообедаем?</Helmet>
+    Пообедаем?
+  </ContentWrapper>
+);
+
+const LobbyPage = () => (
+  <ContentWrapper>
+    <Helmet>Lobby</Helmet>
+    Lobby
+  </ContentWrapper>
+);
+
+const Login = () => (
+  <ContentWrapper>
+    <Helmet>Lobby</Helmet>
+    Lobby
+  </ContentWrapper>
+);
+
+const Profile = () => (
+  <ContentWrapper>
+    <Helmet>Lobby</Helmet>
+    Lobby
+  </ContentWrapper>
+);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <Header />
+        <Router>
+          <React.Fragment>
+            <Route path="/" component={LobbyList} />
+            <Route path="/Lobby" component={LobbyPage} />
+            <Route path="/Login" component={Login} />
+            <Route path="/Profile" component={Profile} />
+          </React.Fragment>
+        </Router>
+      </React.Fragment>
     );
   }
 }

@@ -3,5 +3,5 @@ export const colors = {
   promo: '#FFE200',
   basic: '#4C59D8',
   bg: '#E6E6E6',
-  mainFont: '#ffffff',
+  white: '#ffffff',
 };
