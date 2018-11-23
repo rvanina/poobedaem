@@ -1,0 +1,19 @@
+version: "2"
+services:
+  web:
+    build: .
+    command: node index.js
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://rvanina@postgres/poobedaem
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: rvanina
+      POSTGRES_DB: poobedaem
