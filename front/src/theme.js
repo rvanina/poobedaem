@@ -1,4 +1,4 @@
-export default const colors = {
+export const colors = {
   primary: '#72217D',
   promo: '#FFE200',
   basic: '#4C59D8',
