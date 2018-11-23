@@ -3,7 +3,7 @@
     "extends": "airbnb",
     "rules": {
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
-        "react/no-did-update-set-state": false,
+        "react/no-did-update-set-state": false
     },
     "env": {
         "browser": true
