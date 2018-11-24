@@ -13,12 +13,19 @@ const fetchUsersByRoom = (roomId) => axios
     .get(`http://${HOSTNAME}:${PORT}/api/fetch/users?roomId=${roomId}`)
     .then(response => response.data);
 
-const addUserToRoom = (userId, roomId) => axios
+const fetchUser = (userId) => axios
+    .get(`http://${HOSTNAME}:${PORT}/api/fetch/user?userId=${userId}`)
+    .then(response => response.data);
+
+const moveToRoom = (userId, roomId) => axios
     .get(`http://${HOSTNAME}:${PORT}/api/add/user-to-room?roomId=${roomId}&userId=d${userId}`)
     .then(response => response.data);
 
-const removeUserFromRoom = (userId, roomId) => axios
-    .get(`http://${HOSTNAME}:${PORT}/api/remove/user-from-room?roomId=${roomId}&userId=d${userId}`)
+const fetchVenue = (venueId) => axios
+    .get(`http://${HOSTNAME}:${PORT}/api/fetch/venue?venueId=${venueId}`)
     .then(response => response.data);
 
-export { fetchRooms, fetchRoom, fetchUsersByRoom, addUserToRoom, removeUserFromRoom as default };
+export { 
+    fetchRooms, fetchRoom, fetchUsersByRoom, fetchVenue,
+    moveToRoom, removeUserFromRoom, fetchUser 
+    as default };

@@ -25,7 +25,41 @@ const app = express()
 
 const port = 8888
 
+const data = new Data()
+
+const api = new Api({
+    data: null,
+    db: data,
+})
 app.use('/', express.static('front/build'))
+
+app.get('/api/fetch/rooms', (req, res) => {
+    api.getRegional(req.query.categoryId).then((results) => res.json(results))
+})
+
+app.get('/api/fetch/rooms', (req, res) => {
+    api.getRooms().then((results) => res.json(results))
+})
+
+app.get('/api/fetch/room', (req, res) => {
+    api.getRoom(req.roomId).then((results) => res.json(results))
+})
+
+app.get('/api/fetch/users', (req, res) => {
+    api.getUsersByRoom(req.roomId).then((results) => res.json(results))
+})
+
+app.get('/api/fetch/user', (req, res) => {
+    api.getUser(req.userId).then((results) => res.json(results))
+})
+
+app.get('/api/fetch/venue', (req, res) => {
+    api.getUser(req.venueId).then((results) => res.json(results))
+})
+
+app.get('/api/add/user-to-room', (req, res) => {
+    api.moveToRoom(req.userId, req.roomId).then((results) => res.json(results))
+})
 
 app.listen(port, async () => {
     await venues.init()
