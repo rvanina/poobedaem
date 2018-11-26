@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from './theme';
 import Header from './Header';
+import List from './List';
 
 const ContentWrapper = styled.section`
   background: ${colors.bg};
@@ -12,7 +13,7 @@ const ContentWrapper = styled.section`
 const LobbyList = () => (
   <ContentWrapper>
     <Helmet>Пообедаем?</Helmet>
-    Пообедаем?
+    <List />
   </ContentWrapper>
 );
 
