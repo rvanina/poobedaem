@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { colors } from './theme';
 import Header from './Header';
 import List from './List';
+import Tabs from './Tabs';
 
 const ContentWrapper = styled.section`
   background: ${colors.bg};
@@ -49,6 +50,7 @@ class App extends Component {
             <Route path="/Lobby" component={LobbyPage} />
             <Route path="/Login" component={Login} />
             <Route path="/Profile" component={Profile} />
+            <Tabs />
           </React.Fragment>
         </Router>
       </React.Fragment>

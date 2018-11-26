@@ -24,9 +24,9 @@ const SidebarButton = styled.button`
 export default function Header() {
   return (
     <Wrapper>
-      <SidebarButton>
+      {/* <SidebarButton>
         <i className="mdi mdi-menu mdi-24px" />
-      </SidebarButton>
+      </SidebarButton> */}
       Пообедаем?
     </Wrapper>
   );
