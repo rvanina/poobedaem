@@ -4,4 +4,5 @@ export const colors = {
   basic: '#4C59D8',
   bg: '#E6E6E6',
   white: '#ffffff',
+  headerMainFont: '#ffffff',
 };
