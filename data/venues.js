@@ -5,10 +5,10 @@ class Venues {
     }
 
     async init() {
-        const tableExists = await this.knex.schema.hasTable(this.tableName)
+        const tableExists = await this.knex.schema.hasTable(Venues.tableName)
 
         if (!tableExists) {
-            return await this.knex.schema.createTable(this.tableName, t => {
+            return await this.knex.schema.createTable(Venues.tableName, t => {
                 t.increments('id')
                     .primary()
                 t.string('name')

@@ -27,6 +27,10 @@ const port = 8888
 
 app.use('/', express.static('front/build'))
 
+app.get('/rooms', async (req, res) => {
+    res.json(await rooms.getAllWithUsersAndVenue())
+})
+
 app.listen(port, async () => {
     await venues.init()
     await rooms.init()

@@ -15,9 +15,9 @@ class Users {
                     .primary()
                 t.string('name')
                 t.string('photo')
-                t.specificType('tags', 'jsonb[]')
+                t.specificType('tags', 'text[]')
                 t.string('description')
-                t.integer('room_id').unsigned().references('id').inTable(Rooms.tableName)
+                t.integer('room_id').unsigned().references('id').inTable('rooms')
             })
         }
     }
@@ -26,8 +26,10 @@ class Users {
 
     }
 
-    insert() {
-
+    async moveToRoom(userId, roomId) {
+        return await this.knex(Users.tableName)
+            .where({ id: userId })
+            .update({ room_id: roomId })
     }
 }
 

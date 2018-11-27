@@ -1,4 +1,7 @@
+const _ = require('lodash')
+
 const Venues = require('./venues')
+const Users = require('./users')
 
 class Rooms {
 
@@ -22,13 +25,45 @@ class Rooms {
         }
     }
 
-    get(params) {
-
+    async getWithUsersAndVenue(id) {
+        return this.knex.select(
+            this.knex.raw(`to_json(${Rooms.tableName}.*) as room`),
+            this.knex.raw(`to_json(${Venues.tableName}.*) as venue`),
+            this.knex.raw(`to_json(${Users.tableName}.*) as user`)
+        ).from(Rooms.tableName)
+            .where({ id })
+            .leftJoin(Users.tableName, Rooms.tableName + '.id', '=', 'room_id')
+            .leftJoin(Venues.tableName, 'venue_id', '=', Venues.tableName + '.id')
+            .then((data) => Object.values(_.groupBy(data, (d) => d.room.id))
+                .map(item => item.reduce((acc, item) => {
+                    return {
+                        room: acc.room,
+                        venue: acc.venue,
+                        users: (acc.users || [acc.user]).concat([item.user])
+                    }
+                }))
+            )
     }
 
-    insert() {
-
+    getAllWithUsersAndVenue() {
+        return this.knex.select(
+            this.knex.raw(`to_json(${Rooms.tableName}.*) as room`),
+            this.knex.raw(`to_json(${Venues.tableName}.*) as venue`),
+            this.knex.raw(`to_json(${Users.tableName}.*) as user`)
+        ).from(Rooms.tableName)
+            .leftJoin(Users.tableName, Rooms.tableName + '.id', '=', 'room_id')
+            .leftJoin(Venues.tableName, 'venue_id', '=', Venues.tableName + '.id')
+            .then((data) => Object.values(_.groupBy(data, (d) => d.room.id))
+                .map(item => item.reduce((acc, item) => {
+                    return {
+                        room: acc.room,
+                        venue: acc.venue,
+                        users: (acc.users || [acc.user]).concat([item.user])
+                    }
+                }))
+            )
     }
+
 }
 
 Rooms.tableName = 'rooms'
